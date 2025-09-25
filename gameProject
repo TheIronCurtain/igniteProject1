@@ -35,3 +35,11 @@ score = 0
 frame_count = 0
 game_over = False
 
+def draw_text(text, x, y, color=WHITE):
+img = font.render(text, True, color)
+screen.blit(img, (x, y))
+
+def spawn_rock():
+x = random.randint(0, WIDTH - ROCK_WIDTH)
+rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
+rocks.append(rock)
