@@ -94,3 +94,20 @@ while running:
 
         # Draw score
         draw_text(f"Score: {score}", 10, 10)
+
+    else:
+        # Game over screen
+        draw_text("💀 GAME OVER 💀", WIDTH // 2 - 120, HEIGHT // 2 - 40)
+        draw_text(f"Final Score: {score}", WIDTH // 2 - 90, HEIGHT // 2)
+        draw_text("Press R to restart or Q to quit", WIDTH // 2 - 150, HEIGHT // 2 + 40)
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_r]:
+            reset_game()
+        if keys[pygame.K_q]:
+            running = False
+
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
