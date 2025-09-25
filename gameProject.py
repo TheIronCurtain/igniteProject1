@@ -14,7 +14,7 @@ SPAWN_RATE = 30
 
 # next is colors
 WHITE = (255,255,255)
-BLACK = (0,0,O)
+BLACK = (0,0,0)
 PLAYER_COLOR = (0,200,255)
 ROCK_COLOR = (200,50,50)
 
@@ -38,35 +38,10 @@ game_over = False
 def draw_text(text, x, y, color=WHITE):
     img = font.render(text, True, color)
     screen.blit(img, (x, y))
+    img = font.render(text, True, color)
+    screen.blit(img, (x, y))
 
 def spawn_rock():
     x = random.randint(0, WIDTH - ROCK_WIDTH)
     rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
     rocks.append(rock)
-
-def reset_game():
-    global rocks, score, frame_count, game_over, player
-    rocks = []
-    score = 0
-    frame_count = 0
-    game_over = False
-    player.x = WIDTH // 2
-
-# Game loop
-running = True
-while running:
-    clock.tick(FPS)
-    screen.fill(BLACK)
-
-    # Event handling
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    if not game_over:
-        # Move player
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and player.left > 0:
-            player.x -= player_speed
-        if keys[pygame.K_RIGHT] and player.right < WIDTH:
-            player.x += player_speed
