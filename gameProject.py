@@ -88,3 +88,9 @@ while running:
             elif rock.top > HEIGHT:
                 rocks.remove(rock)
                 score += 1
+
+# Draw player
+        pygame.draw.rect(screen, PLAYER_COLOR, player)
+
+        # Draw score
+        draw_text(f"Score: {score}", 10, 10)
