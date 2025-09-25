@@ -45,3 +45,52 @@ def spawn_rock():
     x = random.randint(0, WIDTH - ROCK_WIDTH)
     rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
     rocks.append(rock)
+
+def reset_game():
+    global rocks, score, frame_count, game_over, player
+    rocks = []
+    score = 0
+    frame_count = 0
+    game_over = False
+    player.x = WIDTH // 2
+
+# Game loop
+running = True
+while running:
+    clock.tick(FPS)
+    screen.fill(BLACK)
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    if not game_over:
+        # Move player
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] and player.left > 0:
+            player.x -= player_speed
+        if keys[pygame.K_RIGHT] and player.right < WIDTH:
+            player.x += player_speed
+
+        # Spawn rocks
+        frame_count += 1
+        if frame_count % SPAWN_RATE == 0:
+            spawn_rock()
+
+        # Move and draw rocks
+        for rock in rocks[:]:
+            rock.y += ROCK_SPEED
+            pygame.draw.rect(screen, ROCK_COLOR, rock)
+
+            if rock.colliderect(player):
+                game_over = True
+            elif rock.top > HEIGHT:
+                rocks.remove(rock)
+                score += 1
+
+# Draw player
+        pygame.draw.rect(screen, PLAYER_COLOR, player)
+
+        # Draw score
+        draw_text(f"Score: {score}", 10, 10)
