@@ -14,7 +14,7 @@ SPAWN_RATE = 30
 
 # next is colors
 WHITE = (255,255,255)
-BLACK = (0,0,O)
+BLACK = (0,0,0)
 PLAYER_COLOR = (0,200,255)
 ROCK_COLOR = (200,50,50)
 
@@ -36,10 +36,10 @@ frame_count = 0
 game_over = False
 
 def draw_text(text, x, y, color=WHITE):
-img = font.render(text, True, color)
-screen.blit(img, (x, y))
+    img = font.render(text, True, color)
+    screen.blit(img, (x, y))
 
 def spawn_rock():
-x = random.randint(0, WIDTH - ROCK_WIDTH)
-rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
-rocks.append(rock)
+    x = random.randint(0, WIDTH - ROCK_WIDTH)
+    rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
+    rocks.append(rock)
