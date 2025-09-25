@@ -64,3 +64,27 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    if not game_over:
+        # Move player
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] and player.left > 0:
+            player.x -= player_speed
+        if keys[pygame.K_RIGHT] and player.right < WIDTH:
+            player.x += player_speed
+
+        # Spawn rocks
+        frame_count += 1
+        if frame_count % SPAWN_RATE == 0:
+            spawn_rock()
+
+        # Move and draw rocks
+        for rock in rocks[:]:
+            rock.y += ROCK_SPEED
+            pygame.draw.rect(screen, ROCK_COLOR, rock)
+
+            if rock.colliderect(player):
+                game_over = True
+            elif rock.top > HEIGHT:
+                rocks.remove(rock)
+                score += 1
