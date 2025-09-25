@@ -45,3 +45,22 @@ def spawn_rock():
     x = random.randint(0, WIDTH - ROCK_WIDTH)
     rock = pygame.Rect(x, 0, ROCK_WIDTH, ROCK_HEIGHT)
     rocks.append(rock)
+
+def reset_game():
+    global rocks, score, frame_count, game_over, player
+    rocks = []
+    score = 0
+    frame_count = 0
+    game_over = False
+    player.x = WIDTH // 2
+
+# Game loop
+running = True
+while running:
+    clock.tick(FPS)
+    screen.fill(BLACK)
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
