@@ -1,3 +1,11 @@
 import pygame
 import random
 import sys
+
+#game settings 
+WIDTH, HEIGHT = 600, 800
+FPS = 60
+PLAYER_WIDTH, PLAYER_HEIGHT = 50,30
+ROCK_WIDTH, ROCK_HEIGHT = 40,40
+ROCK_SPEED = 5
+SPAWN_RATE = 30
