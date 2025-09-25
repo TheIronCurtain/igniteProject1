@@ -2,6 +2,8 @@ import pygame
 import random
 import sys
 
+pygame.init()
+
 #game settings 
 WIDTH, HEIGHT = 600, 800
 FPS = 60
