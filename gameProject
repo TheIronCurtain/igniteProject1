@@ -57,3 +57,8 @@ running = True
 while running:
     clock.tick(FPS)
     screen.fill(BLACK)
+
+    # Event handling
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        running = False
